@@ -24,6 +24,9 @@ Product importance: The company has categorized the product in the various param
 Gender: Male and Female.
 Discount offered: Discount offered on that specific product.
 
+
 Weight in gms: It is the weight in grams.
 
 Reached on time: It is the target variable, where 1 Indicates that the product has NOT reached on time and 0 indicates it has reached on time.
+## Objective
+Product Shipment Delivered on time or not? To Meet E-Commerce Customer Demand
