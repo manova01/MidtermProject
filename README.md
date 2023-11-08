@@ -30,3 +30,56 @@ Weight in gms: It is the weight in grams.
 Reached on time: It is the target variable, where 1 Indicates that the product has NOT reached on time and 0 indicates it has reached on time.
 ## Objective
 predict if  Product Shipment Delivered on time or not? To Meet E-Commerce Customer Demand
+## How It Works 
+
+Everything here runs locally. If you want to try out the service, follow the steps below:
+
+Before you proceed, create a virtual environment.
+
+I used python version 3.8. To create an environment with that version of python using Conda:
+
+conda create -n <env-name> python=3.10
+
+Just replace <env-name> with any title you want. Next:
+
+ conda activate <env-name>
+
+to activate the environment.
+
+
+## Dockerfile
+Now run:
+
+ pip install -r requirements.txt
+
+to install all necessary external dependencies.
+
+Next, Run:
+
+docker build -t <service-name>:v1 .
+
+Replace <service-name> with whatever name you wish to give to the body fat percent estimator service, to build the image.
+
+To run this service:
+
+docker run -it --rm -p 9696:9696 <service-name>:latest
+
+NOTE: I am running this on Windows hence Waitress. If your local machine requires Gunicorn, I think the Dockerfile should be edited with something like this:
+
+
+RUN pip install -U pip
+
+WORKDIR /app
+
+COPY [ "online_webservice_flask/predict.py", "models/pipeline.bin", "requirements.txt", "./" ]
+
+RUN pip install -r requirements.txt
+
+EXPOSE 9696 
+ENTRYPOINT [ "gunicorn", "--bind=0.0.0.0:9696", "predict:app" ]
+
+If the container is up and running, open up a new terminal. Reactivate the Conda environment. Run:
+
+python predict.py
+
+NOTE: predict.py is an example of data you can send to the ENTRYPOINT to interact with the service. Edit it as much as you desire and try out some predictions.
