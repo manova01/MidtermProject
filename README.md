@@ -36,7 +36,7 @@ Everything here runs locally. If you want to try out the service, follow the ste
 
 Before you proceed, create a virtual environment.
 
-I used python version 3.8. To create an environment with that version of python using Conda:
+I used python version 3.10. To create an environment with that version of python using Conda:
 
 conda create -n <env-name> python=3.10
 
